@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">PERSONAL FINANCE</p>
+        <h1>Expense Tracker</h1>
+        <p class="subtitle">Keep track of where your money goes.</p>
+      </div>
+      <section class="total-card" aria-live="polite">
+        <span>Total spent</span>
+        <strong id="totalAmount">₹0.00</strong>
+        <small id="totalCount">0 expenses</small>
+      </section>
+    </header>
+
+    <section class="panel form-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR RECORDS</p>
+          <h2 id="formHeading">Add an expense</h2>
+        </div>
+      </div>
+      <form id="expenseForm">
+        <div class="form-grid">
+          <label class="field field-title">Title <span class="required">*</span>
+            <input id="title" name="title" type="text" maxlength="120" placeholder="e.g. Lunch with friends" required>
+          </label>
+          <label class="field">Amount (₹) <span class="required">*</span>
+            <input id="amount" name="amount" type="number" min="0.01" max="99999999.99" step="0.01" placeholder="0.00" required>
+          </label>
+          <label class="field">Category <span class="required">*</span>
+            <select id="category" name="category" required>
+              <option value="">Choose category</option>
+              <option>Food</option><option>Transport</option><option>Shopping</option>
+              <option>Bills</option><option>Education</option><option>Other</option>
+            </select>
+          </label>
+          <label class="field">Date <span class="required">*</span>
+            <input id="date" name="date" type="date" required>
+          </label>
+          <label class="field field-description">Description
+            <textarea id="description" name="description" rows="2" placeholder="Optional details"></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <p id="formMessage" class="form-message" role="status"></p>
+          <div class="button-group">
+            <button id="cancelEdit" class="button button-quiet hidden" type="button">Cancel</button>
+            <button id="submitButton" class="button button-primary" type="submit">Add expense</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="list-heading">
+        <div>
+          <p class="eyebrow">TRANSACTION HISTORY</p>
+          <h2>Expenses</h2>
+        </div>
+        <label class="filter-field">Filter by category
+          <select id="categoryFilter" aria-label="Filter expenses by category">
+            <option value="">All categories</option>
+            <option>Food</option><option>Transport</option><option>Shopping</option>
+            <option>Bills</option><option>Education</option><option>Other</option>
+          </select>
+        </label>
+      </div>
+      <p id="listMessage" class="list-message" role="status"></p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Expense</th><th>Category</th><th>Date</th><th class="amount-cell">Amount</th><th class="actions-heading">Actions</th></tr></thead>
+          <tbody id="expenseRows"></tbody>
+        </table>
+        <div id="emptyState" class="empty-state hidden">
+          <span class="empty-icon" aria-hidden="true">＋</span>
+          <strong>No expenses yet</strong>
+          <p>Add an expense using the form above. Your records will appear here.</p>
+        </div>
+      </div>
+    </section>
+    <footer>Expense Tracker <span>·</span> Built with Express and MySQL</footer>
+  </main>
+</body>
+</html>
